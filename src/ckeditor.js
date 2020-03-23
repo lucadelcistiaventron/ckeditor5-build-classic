@@ -6,11 +6,15 @@
 // The editor creator to use.
 import ClassicEditorBase from '@ckeditor/ckeditor5-editor-classic/src/classiceditor';
 
+import Indent from '@ckeditor/ckeditor5-indent/src/indent';
+import IndentBlock from '@ckeditor/ckeditor5-indent/src/indentblock';
+import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment';
 import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials';
 import UploadAdapter from '@ckeditor/ckeditor5-adapter-ckfinder/src/uploadadapter';
 import Autoformat from '@ckeditor/ckeditor5-autoformat/src/autoformat';
 import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
 import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
+import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline';
 import BlockQuote from '@ckeditor/ckeditor5-block-quote/src/blockquote';
 import CKFinder from '@ckeditor/ckeditor5-ckfinder/src/ckfinder';
 import EasyImage from '@ckeditor/ckeditor5-easy-image/src/easyimage';
@@ -27,16 +31,21 @@ import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice';
 import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
+import FontColor from '@ckeditor/ckeditor5-font/src/fontcolor';
+import FontBackgroundColor from '@ckeditor/ckeditor5-font/src/fontbackgroundcolor';
+import FontSize from '@ckeditor/ckeditor5-font/src/fontsize';
 
 export default class ClassicEditor extends ClassicEditorBase {}
 
 // Plugins to include in the build.
 ClassicEditor.builtinPlugins = [
+	Alignment,
 	Essentials,
 	UploadAdapter,
 	Autoformat,
 	Bold,
 	Italic,
+	Underline,
 	BlockQuote,
 	CKFinder,
 	EasyImage,
@@ -52,7 +61,13 @@ ClassicEditor.builtinPlugins = [
 	Paragraph,
 	PasteFromOffice,
 	Table,
-	TableToolbar
+	TableToolbar,
+	Indent,
+	IndentBlock,
+	FontColor,
+	FontBackgroundColor,
+	FontSize,
+
 ];
 
 // Editor configuration.
@@ -60,18 +75,28 @@ ClassicEditor.defaultConfig = {
 	toolbar: {
 		items: [
 			'heading',
+			'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor',
 			'|',
 			'bold',
 			'italic',
+			'underline',
+			'alignment',
+			'|',
 			'link',
+			'mediaEmbed',
+			'imageUpload',
+			'|',
 			'bulletedList',
 			'numberedList',
-			'imageUpload',
+			'|',
 			'blockQuote',
 			'insertTable',
-			'mediaEmbed',
+			'|',
 			'undo',
-			'redo'
+			'redo',
+			'|',
+			'outdent',
+			'indent',
 		]
 	},
 	image: {
